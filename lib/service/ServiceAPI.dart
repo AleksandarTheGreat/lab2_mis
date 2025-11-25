@@ -87,4 +87,34 @@ class ServiceAPI {
     }
   }
 
+  Future<void> loadRandomRecipeDetails() async {
+    final res = await http.get(Uri.parse("https://www.themealdb.com/api/json/v1/1/random.php"));
+    if (res.statusCode == 200){
+      final data = jsonDecode(res.body);
+      final list = data['meals'];
+
+      final object = list[0];
+
+      String id = object['idMeal'] ?? "";
+      String name = object['strMeal'] ?? "";
+      String instructions = object['strInstructions'] ?? "";
+      String thumbUrl = object['strMealThumb'] ?? "";
+      String youtubeUrl = object['strYoutube'] ?? "";
+
+      List<String> ingredients = [];
+
+      for (int i=1;i<=20;i++){
+        String key = "strIngredient$i";
+        String ingredient = object[key];
+
+        if (ingredient.isNotEmpty) {
+          ingredients.add(ingredient);
+        }
+      }
+
+      MealRecipe mealRecipe = MealRecipe(id: id, name: name, instructions: instructions, ingredients: ingredients, thumbUrl: thumbUrl, youtubeUrl: youtubeUrl);
+      valueNotifierMealRecipe.value = mealRecipe;
+    }
+  }
+
 }

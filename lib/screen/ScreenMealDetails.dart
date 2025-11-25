@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 class ScreenMealDetails extends StatefulWidget {
 
   const ScreenMealDetails({super.key, required this.meal});
-  final Meal meal;
+  final Meal? meal;
 
   @override
   State<ScreenMealDetails> createState() => _ScreenMealDetailsState(meal: meal);
@@ -18,12 +18,16 @@ class _ScreenMealDetailsState extends State<ScreenMealDetails> {
 
   _ScreenMealDetailsState({required this.meal});
   final ServiceAPI serviceAPI = GetIt.instance<ServiceAPI>();
-  final Meal meal;
+  final Meal? meal;
 
   @override
   void initState() {
     super.initState();
-    serviceAPI.loadDetails(meal);
+    if (meal != null){
+      serviceAPI.loadDetails(meal!);
+    } else {
+      serviceAPI.loadRandomRecipeDetails();
+    }
   }
 
   @override
@@ -36,7 +40,7 @@ class _ScreenMealDetailsState extends State<ScreenMealDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Details for ${meal.name}"),
+        title: Text("Details"),
       ),
       body: ValueListenableBuilder(
         valueListenable: serviceAPI.valueNotifierMealRecipe,
