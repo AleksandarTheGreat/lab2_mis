@@ -4,6 +4,22 @@ A new Flutter project.
 
 ## Getting Started
 
+## Lab 3
+
+Screenshot 1: (Home screen, showing the notification)
+![Alt text](screenshots/sl9.jpg)
+
+Screenshot 2: (Meals screen, each meal has an add to favorites button)
+![Alt text](screenshots/sl10.jpg)
+
+Screenshot 3: (Meals screen, each meal has an add to favorites button)
+![Alt text](screenshots/sl11.jpg)
+
+Screenshot 4: (Favorites screen, showing the favorite recipes)
+![Alt text](screenshots/sl12.jpg)
+
+## Lab 2
+
 Screenshot 1: (Home page, categories)
 ![Alt text](screenshots/sl1.jpg)
 

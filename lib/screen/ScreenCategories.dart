@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lab2_mis/model/FoodCategory.dart';
 import 'package:lab2_mis/screen/ScreenFavorites.dart';
