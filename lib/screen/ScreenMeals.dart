@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:lab2_mis/model/FoodCategory.dart';
 import 'package:lab2_mis/screen/ScreenMealDetails.dart';
 import 'package:lab2_mis/service/ServiceAPI.dart';
+import 'package:lab2_mis/service/ServiceFirebase.dart';
+import 'package:lab2_mis/widget/CardMeal.dart';
 
 class ScreenMeals extends StatefulWidget {
 
@@ -18,6 +20,7 @@ class _ScreenMealsState extends State<ScreenMeals> {
   _ScreenMealsState({required this.foodCategory});
   final FoodCategory foodCategory;
   final ServiceAPI serviceAPI = GetIt.instance<ServiceAPI>();
+  final ServiceFirebase serviceFirebase = GetIt.instance<ServiceFirebase>();
 
   @override
   void initState() {
@@ -53,28 +56,7 @@ class _ScreenMealsState extends State<ScreenMeals> {
               itemCount: meals.length,
               itemBuilder: (context, index) {
                 final meal = meals[index];
-                return Card(
-                  child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenMealDetails(meal: meal)));
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12.0,),
-                          child: Image.network(meal.thumbUrl, height: 150),
-                        ),
-                        SizedBox(height: 12),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 12.0,),
-                          child: Text(meal.name, style: TextStyle(fontSize: 16), textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis,),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
+                return CardMeal(meal: meal, serviceFirebase: serviceFirebase);
               },
             );
           }

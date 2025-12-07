@@ -3,8 +3,18 @@ import 'package:get_it/get_it.dart';
 import 'package:lab2_mis/screen/ScreenCategories.dart';
 import 'package:lab2_mis/service/ServiceAPI.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'package:lab2_mis/service/ServiceFirebase.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   GetIt.instance.registerSingleton(ServiceAPI());
+  GetIt.instance.registerSingleton(ServiceFirebase());
 
   runApp(
     MaterialApp(

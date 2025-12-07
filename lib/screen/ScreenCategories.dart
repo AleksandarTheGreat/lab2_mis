@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lab2_mis/model/FoodCategory.dart';
+import 'package:lab2_mis/screen/ScreenFavorites.dart';
 import 'package:lab2_mis/screen/ScreenMealDetails.dart';
 import 'package:lab2_mis/screen/ScreenMeals.dart';
 import 'package:lab2_mis/service/ServiceAPI.dart';
@@ -37,6 +38,12 @@ class _ScreenCategoriesState extends State<ScreenCategories> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text("Categories"),
+            TextButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenFavorites()));
+              },
+              child: Text("Favorites"),
+            ),
             TextButton(
               onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenMealDetails(meal: null)));
